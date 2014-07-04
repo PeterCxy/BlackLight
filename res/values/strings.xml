@@ -123,5 +123,10 @@
 	<string name="new_comment">%d 条新评论</string>
 	<string name="new_at">%d 条新提及</string>
 	<string name="click_to_view">点击查看</string>
+	
+	<!-- New Post&Repost Activity -->
+	<string name="confirm_new_post">发送</string>
+	<string name="emoticon">表情</string>
+	<string name="add_picture">添加图片</string>
 
 </resources>

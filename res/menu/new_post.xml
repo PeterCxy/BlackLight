@@ -21,16 +21,16 @@
 	<item
         android:id="@+id/post_pic"
         android:icon="@drawable/ic_action_new_picture"
-		android:showAsAction="always"/>
+		android:showAsAction="always" android:title="@string/add_picture"/>
 	
 	<item
-		android:id="@+id/post_emiticon"
+		android:id="@+id/post_emoticon"
 		android:icon="@drawable/ic_action_emoticon"
-		android:showAsAction="always"/>
+		android:showAsAction="always" android:title="@string/emoticon"/>
 	
     <item
         android:id="@+id/post_send"
         android:icon="@drawable/ic_action_send_now"
-		android:showAsAction="always"/>
+		android:showAsAction="always" android:title="@string/confirm_new_post"/>
     
 </menu>

@@ -87,7 +87,7 @@ public class SwipeUpAndDownRefreshLayout extends SwipeRefreshLayout
 		try {
 			Field f = SwipeRefreshLayout.class.getDeclaredField("mProgressBarHeight");
 			f.setAccessible(true);
-			mProgressBarHeight = f.get(this);
+			mProgressBarHeight = (Integer) f.get(this);
 		} catch (Exception e) {
 			mProgressBarHeight = 0;
 		}
@@ -153,7 +153,7 @@ public class SwipeUpAndDownRefreshLayout extends SwipeRefreshLayout
 		try {
 			Field f = SwipeRefreshLayout.class.getDeclaredField("mReturningToStart");
 			f.setAccessible(true);
-			returningToStart = f.get(this);
+			returningToStart = (Boolean) f.get(this);
 		} catch (Exception e) {
 			return handled;
 		}
@@ -172,7 +172,7 @@ public class SwipeUpAndDownRefreshLayout extends SwipeRefreshLayout
 		try {
 			Field f = SwipeRefreshLayout.class.getDeclaredField("mReturningToStart");
 			f.setAccessible(true);
-			returningToStart = f.get(this);
+			returningToStart = (Boolean) f.get(this);
 			f = SwipeRefreshLayout.class.getDeclaredField("mDownEvent");
 			f.setAccessible(true);
 			downEvent = (MotionEvent) f.get(this);

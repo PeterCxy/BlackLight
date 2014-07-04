@@ -46,6 +46,8 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 import us.shandian.blacklight.R;
 import us.shandian.blacklight.api.statuses.PostApi;
+import us.shandian.blacklight.api.user.AccountApi;
+import us.shandian.blacklight.api.user.UserApi;
 import us.shandian.blacklight.support.AsyncTask;
 import us.shandian.blacklight.support.Utility;
 import us.shandian.blacklight.ui.common.EmoticonFragment;
@@ -78,6 +80,7 @@ public class NewPostActivity extends SwipeBackActivity
 		getActionBar().setHomeButtonEnabled(true);
 		getActionBar().setDisplayUseLogoEnabled(false);
 		getActionBar().setDisplayShowHomeEnabled(false);
+		getActionBar().setSubtitle(UserApi.getUser(AccountApi.getUid()).name);
 		
 		// Init
 		mText = (EditText) findViewById(R.id.post_edit);
@@ -182,7 +185,7 @@ public class NewPostActivity extends SwipeBackActivity
 				i.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 				startActivityForResult(i, REQUEST_PICK_IMG);
 				return true;
-			case R.id.post_emiticon:
+			case R.id.post_emoticon:
 				if (mDrawer.isDrawerOpen(Gravity.END)) {
 					mDrawer.closeDrawer(Gravity.END);
 				} else {
