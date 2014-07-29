@@ -26,8 +26,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,8 +57,6 @@ public class Utility
 	private static final String TAG = Utility.class.getSimpleName();
 	
 	private static final int REQUEST_CODE = 100001;
-	
-	private static final int INTERVAL_THREE_MINUTES = 3 * 60 * 1000;
 	
 	public static int expireTimeInDays(long time) {
 		return (int) TimeUnit.MILLISECONDS.toDays(time - System.currentTimeMillis());
@@ -131,13 +127,37 @@ public class Utility
 	}
 	
 	public static void startServices(Context context) {
-		startServiceAlarm(context, CommentTimeLineFetcherService.class, INTERVAL_THREE_MINUTES);
-		startServiceAlarm(context, MentionsTimeLineFetcherService.class, INTERVAL_THREE_MINUTES);
+		Settings mSettings = Settings.getInstance(context);
+		startServiceAlarm(context,
+				CommentTimeLineFetcherService.class,
+				getIntervalTime(mSettings.getInt(Settings.NOTIFICATION_INTERVAL, 1))
+				);
+		startServiceAlarm(
+				context,
+				MentionsTimeLineFetcherService.class, 
+				getIntervalTime(mSettings.getInt(Settings.NOTIFICATION_INTERVAL, 1))
+				);
 	}
 	
 	public static void stopServices(Context context) {
 		stopServiceAlarm(context, CommentTimeLineFetcherService.class);
 		stopServiceAlarm(context, MentionsTimeLineFetcherService.class);
+	}
+	
+	public static int getIntervalTime(int id) {
+		switch (id){
+		case 0:
+			return 1 * 60 * 1000;
+		case 1:
+			return 3 * 60 * 1000;
+		case 2:
+			return 5 * 60 * 1000;
+		case 3:
+			return 10 * 60 * 1000;
+		case 4:
+			return 30 * 60 * 1000;
+		}
+		return -1;
 	}
 	
 	public static int getActionBarHeight(Context context) {
